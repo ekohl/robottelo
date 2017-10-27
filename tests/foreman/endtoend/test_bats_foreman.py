@@ -166,7 +166,7 @@ def test_katello_content(organization, product, yum_repository, puppet_repositor
     command("yum erase -y 'katello-ca-consumer-*'")
     command("rpm -Uvh http://{}/pub/katello-ca-consumer-latest.noarch.rpm".format(
         settings.server.hostname))
-    result = command("subscription-manager register --force --org='{}' --username='{}' --password='{}'".format(
+    result = command("subscription-manager register --force --org='{}' --username='{}' --password='{}' --env=Library".format(
         organization["label"], settings.server.admin_username, settings.server.admin_password))
     assert result.return_code == 0
 
